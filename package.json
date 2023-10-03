@@ -4,8 +4,10 @@
   "description": "Node API 1 Project Code",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand"
+    "start": "node index.js",
+    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
+    "server": "nodemon index.js"
+    
   },
   "devDependencies": {
     "@types/jest": "^27.5.0",
