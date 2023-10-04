@@ -38,17 +38,21 @@ server.get('/api/users/:id', async(req,res)=>{
 })
 
 
-server.put('/api/users/:id', (req,res)=>{
+server.put('/api/users/:id', async (req,res)=>{
     try{
         
         const { id } = req.params;
-        Model.update(id, req.body)
+       const updatedUser = await Model.update(id, req.body)
         console.log(req.body)
-        res.status(200).json({message: "it might have worked"})
-        
+        res.status(200).json(
+            {message: "user updated successfully",
+                data: updatedUser 
+            }
+        )
     }catch(err){
         res.status(500).json({
-            message: 'Error updating user'
+            message: 'Error updating user',
+            
         })
     }
 })
