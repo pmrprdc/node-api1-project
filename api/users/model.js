@@ -47,7 +47,7 @@ const update = (id, changes) => {
 }
 
 const remove = id => {
-  // DELETE FROM users WHERE id = 1;
+  // DELETdeE FROM users WHERE id = 1;
   const user = users.find(user => user.id === id)
   if (!user) return Promise.resolve(null)
 

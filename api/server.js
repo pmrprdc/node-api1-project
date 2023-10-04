@@ -76,4 +76,24 @@ server.delete('/api/users/:id', async(req,res)=>{
 })
 
 
+server.post('/api/users', async (req,res)=>{
+    try{
+        
+        const {name, bio} = req.body;
+        const added = await Model.insert({name,bio})
+        
+        res.status(200).json({message: "added new user",
+        added: added})
+        }
+    catch(err){
+        res.status(500).json({
+            message: "not able to add user"
+        })
+      
+        }
+    }
+    
+)
+
+
 module.exports = server;
