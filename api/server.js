@@ -78,8 +78,12 @@ server.delete('/api/users/:id', async(req,res)=>{
 
 server.post('/api/users', async (req,res)=>{
     try{
-        
         const {name, bio} = req.body;
+        if(!name || !bio){
+            res.status(400).json({
+                message: "Please provide name and bio for the user" 
+            })
+        }
         const added = await Model.insert({name,bio})
         
         res.status(200).json({message: "added new user",
