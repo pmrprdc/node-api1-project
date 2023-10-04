@@ -9,7 +9,6 @@ server.use(express.json())
 
 server.get('/api/users', async (req,res)=>{
     try{
-
         const users = await Model.find()
         res.status(200).json(users)
     }catch(err) {
@@ -19,7 +18,6 @@ server.get('/api/users', async (req,res)=>{
 
 })
 
-////
 
 
 server.get('/api/users/:id', async(req,res)=>{
@@ -57,6 +55,25 @@ server.put('/api/users/:id', async (req,res)=>{
     }
 })
 
+
+
+server.delete('/api/users/:id', async(req,res)=>{
+
+    try{
+        const { id } = req.params;
+        const deleted = await Model.remove(id)
+        res.status(200).json({
+            message: `User with id ${id} was successfully removed`,
+            deleted: deleted
+        })
+
+    }catch(err){
+        res.status(500).json({
+            message: 'Error deleting user',
+            
+        })
+    }
+})
 
 
 module.exports = server;
