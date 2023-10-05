@@ -77,8 +77,8 @@ server.delete('/api/users/:id', async(req,res)=>{
                 message: "The user with the specified ID does not exist"
             })
         }
-        res.status(200).json({
-            deleted
+       return res.status(200).json({
+            ...deleted
         })
 
     }catch(err){
