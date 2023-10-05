@@ -92,17 +92,20 @@ server.post('/api/users', async (req,res)=>{
     try{
         const {name, bio} = req.body;
         if(!name || !bio){
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Please provide name and bio for the user" 
             })
         }
-        const added = await Model.insert({name,bio})
+        const newUser= await Model.insert({name,bio})
         
-        res.status(201).json({message: "added new user",
-        added: added})
+        res.status(201).json({
+            id: newUser.id, 
+            name: newUser.name,
+            bio: newUser.bio}
+          )
         }
     catch(err){
-        res.status(500).json({
+        return res.status(500).json({
             message: "There was an error while saving the user to the database"
         })
       
