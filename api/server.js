@@ -51,7 +51,7 @@ server.put('/api/users/:id', async (req,res)=>{
         }
        const updatedUser = await Model.update(id, req.body)
        if(!updatedUser){
-        res.status(404).json({message: "The user with the specified ID does not exist"})
+        return res.status(404).json({message: "The user with the specified ID does not exist"})
        }
        
         
