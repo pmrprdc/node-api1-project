@@ -23,8 +23,11 @@ server.get('/api/users', async (req,res)=>{
 server.get('/api/users/:id', async(req,res)=>{
     try{
         const {id} = req.params;
-        console.log(id)
+        
         const user = await Model.findById(id)
+        if(!user){
+           res.status(404).json({ message: "The user with the specified ID does not exist" })
+        }
         res.status(200).json(user)
 
     }catch(err) {
@@ -86,12 +89,12 @@ server.post('/api/users', async (req,res)=>{
         }
         const added = await Model.insert({name,bio})
         
-        res.status(200).json({message: "added new user",
+        res.status(201).json({message: "added new user",
         added: added})
         }
     catch(err){
         res.status(500).json({
-            message: "not able to add user"
+            message: "There was an error while saving the user to the database"
         })
       
         }
