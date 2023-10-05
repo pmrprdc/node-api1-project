@@ -45,7 +45,7 @@ server.put('/api/users/:id', async (req,res)=>{
         const { id } = req.params;
         const {name, bio} = req.body;
         if(!name || !bio){
-            res.status(400).json({
+           return res.status(400).json({
                 message: "Please provide name and bio for the user"
             })
         }
@@ -55,13 +55,13 @@ server.put('/api/users/:id', async (req,res)=>{
        }
        
         
-         res.status(200).json(
+        return res.status(200).json(
             {
              ...updatedUser 
             }
         )
     }catch(err){
-        res.status(500).json({ message: "The user information could not be modified" })
+       return res.status(500).json({ message: "The user information could not be modified" })
     }
 })
 
