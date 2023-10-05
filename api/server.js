@@ -76,7 +76,7 @@ server.delete('/api/users/:id', async(req,res)=>{
         })
 
     }catch(err){
-        res.status(500).json({ message: "The user information could not be retrieved" })
+        res.status(500).json({ message: "The user could not be removed" })
     }
 })
 
